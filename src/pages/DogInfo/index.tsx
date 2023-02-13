@@ -22,7 +22,8 @@ const DogInfo: React.FC = () => {
     axios.get<any>(`https://api.thedogapi.com/v1/breeds/${params.id}`).then(
       response => {
         setDog(response.data)
-        axios.get<any>(`https://api.thedogapi.com/v1/images/${response.data.reference_image_id}`).then(
+        console.log(response.data)
+        axios.get<any>(`https://api.thedogapi.com/v1/images/${response.data.reference_image_id}?size=small`).then(
           response => {
             setImage(response.data.url)
             setLoading(false)
