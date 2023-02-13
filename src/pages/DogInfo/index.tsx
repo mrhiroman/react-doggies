@@ -28,16 +28,15 @@ const DogInfo: React.FC = () => {
             setImage(response.data.url)
             setLoading(false)
         })
-        
       }
     )
   }, [])
 
   return (
       <div className={styles.root}> 
-      {dog ? <div className={styles.card}>
+      {image ? <div className={styles.card}>
           <div>{dog.name}</div>
-          <img src={image} /> {/* Needs load fix */}
+          <img src={image} />
           <div>Height: {dog.height.metric} cm</div>
           <div>Weight: {dog.weight.metric} kg</div>
           <div>Lifespan: {dog.life_span}</div> 
