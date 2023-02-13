@@ -1,0 +1,31 @@
+.root
+    display: flex
+    justify-content: center
+    padding: 20px
+li
+    display: inline-block
+
+    a
+        text-align: center
+        width: 45px
+        line-height: 42px
+        height: 45px
+        border: 2px solid #4eaa11
+        border-radius: 30px
+        margin-right: 10px
+        cursor: pointer
+        display: inline-block
+        color: #21b432
+        font-size: 20px
+        font-weight: 800
+
+    &:hover
+        a
+            background-color: #4eaa11
+            color: #fff
+
+:global
+    .selected
+        a
+            background-color: #4eaa11
+            color: #fff

@@ -1,25 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Routes, Route} from "react-router-dom";
+import Home from './pages/Home';
+import DogInfo from './pages/DogInfo';
+import Header from './components/Header';
+import axios from 'axios';
+import {useSelector, useDispatch} from 'react-redux';
+import { RootState } from './redux/store';
+
+import './App.sass'
+
+import { Dog, setDogs } from './redux/dogs/slice'
 
 function App() {
+  const dispatch = useDispatch()
+  const currentPage = useSelector((state: RootState) => state.dogs.currentPage)
+
+  const [isLoading, setLoading] = React.useState(false)
+
+  React.useEffect(() => {
+    setLoading(true)
+    axios.get<Dog[]>(`https://api.thedogapi.com/v1/breeds?page=${currentPage}&limit=8`).then(
+      response => {
+        dispatch(setDogs(response.data)) 
+        setLoading(false)
+        
+      }
+    )
+  }, [currentPage]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='wrapper'>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home isLoading={isLoading}/>} />
+        <Route path="/dog/:id" element={<DogInfo />} />
+      </Routes>
     </div>
+    
   );
 }
 
