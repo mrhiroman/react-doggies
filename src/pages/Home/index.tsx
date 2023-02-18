@@ -24,6 +24,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
     dispatch(setCurrentPage(page));
   };
 
+
   return (
     <>
       <div className={styles.dogsList}>

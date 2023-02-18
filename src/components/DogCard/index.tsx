@@ -10,9 +10,9 @@ type DogProps = {
 
 const DogCard: React.FC<DogProps> = ({dog}) => {
   return (
-    <Link className={styles.link} to={'/dog/' + dog.id}>
+    <Link className={styles.link} to={'/dogs/' + dog.id}>
         <div className={styles.root}> 
-            <img src={dog.image.url} />
+            <img src={dog.image} />
             <div>{dog.name}</div>
         </div>
     </Link>

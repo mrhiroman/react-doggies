@@ -11,6 +11,8 @@ import './App.sass'
 
 import { Dog, setDogs } from './redux/dogs/slice'
 
+axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+
 function App() {
   const dispatch = useDispatch()
   const currentPage = useSelector((state: RootState) => state.dogs.currentPage)
@@ -19,11 +21,10 @@ function App() {
 
   React.useEffect(() => {
     setLoading(true)
-    axios.get<Dog[]>(`https://api.thedogapi.com/v1/breeds?page=${currentPage}&limit=8`).then(
+    axios.get<Dog[]>(`https://localhost:7235/api/dogs?page=${currentPage}&limit=16`).then(
       response => {
         dispatch(setDogs(response.data)) 
-        setLoading(false)
-        
+        setLoading(false)   
       }
     )
   }, [currentPage]);
@@ -33,7 +34,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home isLoading={isLoading}/>} />
-        <Route path="/dog/:id" element={<DogInfo />} />
+        <Route path="/dogs/:id" element={<DogInfo />} />
       </Routes>
     </div>
     

@@ -3,20 +3,13 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export interface Dog {
     id: number,
     name: string,
-    origin: string,
-    weight: {
-        imperial: string,
-        metric: string
-    }
-    height: {
-        imperial: string,
-        metric: string
-    }
-    life_span: string,
-    image: {
-        url: string
-    }
-    reference_image_id: string
+    minWeight: number,
+    maxWeight: number,
+    minHeight: number,
+    maxHeight: number,
+    minLifespan: number,
+    maxLifespan: number,
+    image: string,
 }
 
 

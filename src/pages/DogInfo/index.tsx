@@ -10,36 +10,28 @@ import Skeleton from '../../components/DogCard/Skeleton'
 
 const DogInfo: React.FC = () => {
   const [dog, setDog] = React.useState<any>()
-  const [image, setImage] = React.useState()
+  const [loaded, setLoaded] = React.useState("")
   const dispatch = useDispatch()
-
-  const [isLoading, setLoading] = React.useState(false)
   const params = useParams();
 
   {/* Я бы за такое api бэкендерам руки оторвал */}
   React.useEffect(() => {
-    setLoading(true)
-    axios.get<any>(`https://api.thedogapi.com/v1/breeds/${params.id}`).then(
+    axios.get<Dog>(`https://localhost:7235/api/dogs/${params.id}`).then(
       response => {
         setDog(response.data)
-        console.log(response.data)
-        axios.get<any>(`https://api.thedogapi.com/v1/images/${response.data.reference_image_id}?size=small`).then(
-          response => {
-            setImage(response.data.url)
-            setLoading(false)
-        })
+        setLoaded("success")
       }
     )
   }, [])
 
   return (
       <div className={styles.root}> 
-      {image ? <div className={styles.card}>
+      {loaded !== "" ? <div className={styles.card}>
           <div>{dog.name}</div>
-          <img src={image} />
-          <div>Height: {dog.height.metric} cm</div>
-          <div>Weight: {dog.weight.metric} kg</div>
-          <div>Lifespan: {dog.life_span}</div> 
+          <img src={dog.image} />
+          <div>Height: {dog.minHeight} - {dog.maxHeight} cm</div>
+          <div>Weight: {dog.minWeight} - {dog.maxWeight} kg</div>
+          <div>Lifespan: {dog.minLifespan} - {dog.maxLifespan} years</div> 
           <Link className={styles.link} to="/">
             <div className={styles.button}>
               Go Back
