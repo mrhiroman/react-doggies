@@ -9,6 +9,7 @@ import { Pagination } from '../../components/Pagination';
 
 import styles from './Home.module.sass'
 import { Root } from 'react-dom/client';
+import Filters from '../../components/Filters';
 
 interface HomeProps {
   isLoading: boolean
@@ -28,9 +29,10 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
   return (
     <>
       <div className={styles.dogsList}>
-        {props.isLoading ?  [...new Array(8)].map((_, index) => <Skeleton key={index} />) : dogs.map((dog: Dog) => <DogCard key={dog.id} dog={dog}/>)}
+        {props.isLoading || dogs.length === 0 ?  [...new Array(4)].map((_, index) => <Skeleton key={index} />) : dogs.map((dog: Dog) => <DogCard key={dog.id} dog={dog}/>)}
       </div>
       <Pagination currentPage={currentPage} onChangePage={onChangePage} />
+      <Filters />
     </>
   )
 }

@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import dogs from './dogs/slice';
+import filters from './filters/slice'
 import { useDispatch } from 'react-redux';
 
 export const store = configureStore({
   reducer: {
-    dogs
+    dogs,
+    filters
   },
 });
 

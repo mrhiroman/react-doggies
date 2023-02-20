@@ -10,7 +10,7 @@ import Skeleton from '../../components/DogCard/Skeleton'
 
 const DogInfo: React.FC = () => {
   const [dog, setDog] = React.useState<any>()
-  const [loaded, setLoaded] = React.useState("")
+  const [loaded, setLoaded] = React.useState(false)
   const dispatch = useDispatch()
   const params = useParams();
 
@@ -19,14 +19,14 @@ const DogInfo: React.FC = () => {
     axios.get<Dog>(`https://localhost:7235/api/dogs/${params.id}`).then(
       response => {
         setDog(response.data)
-        setLoaded("success")
+        setLoaded(true)
       }
     )
   }, [])
 
   return (
       <div className={styles.root}> 
-      {loaded !== "" ? <div className={styles.card}>
+      {loaded === true ? <div className={styles.card}>
           <div>{dog.name}</div>
           <img src={dog.image} />
           <div>Height: {dog.minHeight} - {dog.maxHeight} cm</div>
