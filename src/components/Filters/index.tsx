@@ -7,7 +7,7 @@ import styles from './Filters.module.sass'
 
 const Filters = () => {
     const [selectedLimiter, setLimiter] = React.useState(0)
-    const {pageLimit, minHeight, maxHeight, minWeight, maxWeight, minLifespan, maxLifespan, breed} = useSelector((state: RootState) => state.filters)
+    const {minHeight, maxHeight, minWeight, maxWeight, minLifespan, maxLifespan, breed} = useSelector((state: RootState) => state.filters)
     const dispatch = useDispatch()
 
     const changeLimiter = (limiter: number, onPage: number) => {
@@ -38,10 +38,10 @@ const Filters = () => {
         </div>
         <div className={`${styles.input} ${styles.bigInput}`}>
             show on page:
-            <div onClick={() => changeLimiter(0,4)} className={`${styles.selector} ${selectedLimiter == 0 ? styles.selected : ''}`}>4</div>
-            <div onClick={() => changeLimiter(1, 8)} className={`${styles.selector} ${selectedLimiter == 1 ? styles.selected : ''}`}>8</div>
-            <div onClick={() => changeLimiter(2, 16)} className={`${styles.selector} ${selectedLimiter == 2 ? styles.selected : ''}`}>16</div>
-            <div onClick={() => changeLimiter(3, 64)} className={`${styles.selector} ${selectedLimiter == 3 ? styles.selected : ''}`}>64</div>
+            <div onClick={() => changeLimiter(0,4)} className={`${styles.selector} ${selectedLimiter === 0 ? styles.selected : ''}`}>4</div>
+            <div onClick={() => changeLimiter(1, 8)} className={`${styles.selector} ${selectedLimiter === 1 ? styles.selected : ''}`}>8</div>
+            <div onClick={() => changeLimiter(2, 16)} className={`${styles.selector} ${selectedLimiter === 2 ? styles.selected : ''}`}>16</div>
+            <div onClick={() => changeLimiter(3, 64)} className={`${styles.selector} ${selectedLimiter === 3 ? styles.selected : ''}`}>64</div>
         </div>
     </div>
     

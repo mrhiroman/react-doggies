@@ -8,8 +8,8 @@ import Skeleton from '../../components/DogCard/Skeleton';
 import { Pagination } from '../../components/Pagination';
 
 import styles from './Home.module.sass'
-import { Root } from 'react-dom/client';
 import Filters from '../../components/Filters';
+import Review from '../../components/Review';
 
 interface HomeProps {
   isLoading: boolean
@@ -33,6 +33,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
       </div>
       <Pagination currentPage={currentPage} onChangePage={onChangePage} />
       <Filters />
+      <Review />
     </>
   )
 }

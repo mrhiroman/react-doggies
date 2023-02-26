@@ -29,6 +29,7 @@ function App() {
         dispatch(setDogsCount(response.headers['x-total-count']))
         setLoading(false)
       }
+    ).catch(err => console.log('Error when loading: ', err)
     )
   }, 
   [currentPage,
